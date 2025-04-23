@@ -163,7 +163,7 @@ vim.opt.confirm = true
 
 vim.filetype.add {
   pattern = {
-    ['.*/ansible/.*/.*.y*ml'] = 'yaml.ansible',
+    ['.*/ansible/.*.yml'] = 'yaml.ansible',
   },
 }
 
