@@ -700,13 +700,14 @@ require('lazy').setup({
         },
         ansiblels = {
           filetypes = { 'yaml.ansible' },
-          root_dir = function(fname)
-            local filepath = vim.fn.expand(fname)
-            if string.find(filepath, vim.fn.expand '$HOME/ansible/') then
-              return vim.fn.expand '$HOME/ansible/'
-            end
-            return nil
-          end,
+        },
+        yamlls = {
+          filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab' },
+          root_markers = { '.git' },
+          settings = {
+            -- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
+            redhat = { telemetry = { enabled = false } },
+          },
         },
         -- clangd = {},
         -- gopls = {},
@@ -837,12 +838,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          {
-            'rafamadriz/friendly-snippets',
-            config = function()
-              require('luasnip.loaders.from_vscode').lazy_load()
-            end,
-          },
+          -- {
+          --   'rafamadriz/friendly-snippets',
+          --   config = function()
+          --     require('luasnip.loaders.from_vscode').lazy_load()
+          --   end,
+          -- },
         },
         opts = {},
       },
